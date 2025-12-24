@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css" />
+  </head>
+
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+      <% if (prods.length > 0) { %>
+      <h1 class="available_products">Available Products</h1>
+      <div class="grid">
+        <% for (let prod of prods) { %>
+        <article class="card product-item">
+          <div class="card__image">
+            <a href="/products/<%= prod._id %>"
+              ><img src="<%= prod.imageURL %>" alt="<%= prod.title %>"
+            /></a>
+          </div>
+          <div class="card__header">
+            <h1 class="product__title"><%= prod.title %></h1>
+          </div>
+          <div class="card__header">
+            <h1 class="product__description">
+              <% const words = prod.description.split(/\s+/); const isLong =
+              words.length > 8; const shortDesc = isLong ? words.slice(0,
+              8).join(' ') : prod.description; %>
+              <p>
+                <%= shortDesc %> <% if (isLong) { %>
+                <a href="/products/<%= prod._id %>" class="read-more"
+                  >...more</a
+                >
+                <% } %>
+              </p>
+            </h1>
+          </div>
+          <div class="card__content price__button">
+            <span class="product__price">₹<%= prod.price %></span>
+            <span>
+              <%- include('../includes/add-to-cart.ejs', {prod : prod}) %>
+            </span>
+          </div>
+        </article>
+        <% } %>
+      </div>
+      <div class="pagination">
+        <% if(currentPage !==1 && previousPage !== 1) { %>
+        <a href="/products?page=1">1</a>
+        <% if(currentPage - 1 > 2 ) { %><span>...</span><% } %> <% } %> <%
+        if(hasPreviousPage) { %>
+        <a href="/products?page=<%= previousPage %>"><%= previousPage %></a>
+        <% } %>
+        <a href="/products?page=<%= currentPage %>" class="active"
+          ><%= currentPage %></a
+        >
+        <% if(hasNextPage) { %>
+        <a href="/products?page=<%= nextPage %>"><%= nextPage %></a>
+        <% } %> <% if(lastPage !== currentPage && nextPage !== lastPage) { %> <%
+        if(currentPage < lastPage - 2) { %><span>...</span><% } %>
+        <a href="/products?page=<%= lastPage %>"><%= lastPage %></a>
+        <% } %>
+      </div>
+      <% } else { %>
+      <h1>No Products Found!</h1>
+      <% } %>
+    </main>
+    <%- include('../includes/end.ejs') %>
+  </body>
+</html>

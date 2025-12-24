@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+  </head>
+
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+    <div class="wrapper">
+      <section class="login_section">
+        <form class="login_form" action="/reset" method="post">
+          <h2 class="welcome">Reset Password !</h2>
+          <% if(errorMessage) { %>
+          <div class="errorMessage">
+            <p><%= errorMessage %></p>
+          </div>
+          <% } %>
+          <label for="email"> Email </label>
+          <input type="text" class="login_input" id="email" name="email" />
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button class="btn">Reset</button>
+        </form>
+      </section>
+    </div>
+  </body>
+</html>

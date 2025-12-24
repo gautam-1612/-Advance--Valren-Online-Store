@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/productDetail.css" />
+  </head>
+
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <article>
+      <h2 class="product-section-title">Explore Product</h2>
+      <div class="bigCard">
+        <div class="prodImage">
+          <img src="<%= prod.imageURL %>" alt="<%= prod.title %>" />
+        </div>
+        <div class="prodInfo">
+          <h1><%= prod.title %></h1>
+          <p class="description"><%= prod.description %></p>
+          <div class="price_cartButton">
+            <span>₹<%= prod.price %></span>
+            <%- include('../includes/add-to-cart.ejs') %>
+          </div>
+        </div>
+      </div>
+      <div class="back">
+        <a href="/products">
+          <img src="/left.png" alt="" />
+          <p>All Products</p>
+        </a>
+      </div>
+    </article>
+  </body>
+</html>

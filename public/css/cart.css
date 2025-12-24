@@ -1,0 +1,305 @@
+.un-list {
+  list-style: none;
+}
+
+/* Cart Heading */
+.cart_heading {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin: 30px 0px 50px 0px;
+}
+
+/* Page Layout (Cart + Summary) */
+.separator {
+  display: flex;
+  gap: 40px;
+}
+
+/* Left: Product List */
+.section_1 {
+  width: 70%;
+}
+
+article {
+  margin: 20px 0px 0px 0px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  width: 100%;
+}
+
+a > img {
+  height: 160px;
+}
+
+.content {
+  height: 160px;
+  width: 100%;
+}
+
+.content > h1 {
+  font-size: 1rem;
+}
+
+.content > p {
+  font-size: 0.8rem;
+}
+
+/* If Cart Is Empty */
+.empty {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.empty > p {
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+.empty > img {
+  height: 110px;
+}
+
+/* Product Price Row */
+.price_form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  margin: 0px;
+  font-size: 0.8rem;
+}
+
+/* Qty Buttons */
+.qty-btn {
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+.qty-btn:hover {
+  color: #e03232;
+  border-color: #e03232;
+}
+
+/* Delete Button */
+.delete-btn {
+  padding: 4px 12px;
+  background: #e03232;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-right: 30px;
+}
+.delete-btn:hover {
+  opacity: 0.8;
+}
+
+/* Vertical Line (between cart & summary) */
+.v-line {
+  width: 1px;
+  height: inherit;
+  background-color: #e03232;
+  margin-top: 20px;
+}
+
+/* Right: Summary Section */
+.section_2 {
+  margin-top: 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0px;
+  width: 100%;
+  max-width: 360px;
+}
+
+/* Summary Rows (Total / GST / Shipping / Final Payable) */
+.total {
+  width: 90%;
+  display: flex;
+  justify-content: space-between; /* left text / right amount */
+  align-items: center;
+  margin: 0;
+}
+
+.total_price {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.total_amount {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.finalPayable {
+  color: #e03232;
+}
+
+.secondary_price {
+  font-size: 15px;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+/* Checkout Button */
+.checkout {
+  height: 40px;
+  width: 150px;
+  padding: 10px 24px;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  background-color: #e03232;
+  border-radius: 30px;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.checkout:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+  background-color: #c12b2b;
+}
+
+/* --------------------------- RESPONSIVE --------------------------- */
+
+/* Tablet / Small Laptop */
+@media (max-width: 1030px) {
+  body {
+    font-size: 0.92rem;
+  }
+
+  .separator {
+    gap: 20px;
+  }
+
+  .content > h1 {
+    font-size: 0.9rem;
+  }
+
+  .content > p {
+    font-size: 0.75rem;
+  }
+
+  .section_2 {
+    margin: 0px auto;
+  }
+
+  .total_price,
+  .total_amount {
+    font-size: 16px;
+  }
+
+  .checkout {
+    font-size: 14px;
+    height: 38px;
+    width: 130px;
+  }
+  .secondary_price {
+    font-size: 14px;
+  }
+}
+
+/* Tablet Vertical / Large Mobile */
+@media (max-width: 800px) {
+  .empty > p {
+    font-size: 1 rem;
+  }
+
+  .separator {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .section_1,
+  .section_2 {
+    width: 95%;
+  }
+
+  article {
+    height: auto;
+    align-items: flex-start;
+  }
+
+  a > img {
+    height: 140px;
+  }
+
+  .v-line {
+    width: 90%;
+    height: 1px;
+    background-color: #e03232;
+    margin: 10px auto;
+    display: block;
+  }
+
+  .total {
+    width: 90%;
+  }
+
+  .checkout {
+    width: 120px;
+  }
+}
+
+/* Mobile View */
+@media (max-width: 500px) {
+  .un-list {
+    padding: 0;
+  }
+
+  .empty > p {
+    font-size: 0.8rem;
+  }
+
+  .content > p {
+    display: none;
+  }
+
+  .content > h1 {
+    font-size: 1rem;
+  }
+
+  .price_form {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .price_form p {
+    font-size: 0.95rem;
+    font-weight: 400;
+  }
+
+  .form {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .total_price,
+  .total_amount {
+    font-size: 14px;
+  }
+}

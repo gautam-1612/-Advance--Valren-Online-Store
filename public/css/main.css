@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Momo+Signature&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Elms Sans";
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Elms Sans", sans-serif;
+  background-color: #fff;
+  overflow-y: scroll;
+}
+
+/* For Webkit browsers (Chrome, Edge, Safari) */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+main {
+  padding: 2rem;
+}
+
+.main-header {
+  width: 100%;
+  height: 3.9rem;
+  /* background-color: #4a70a9; */
+  background-color: black;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 100px;
+}
+
+.logo {
+  font-family: "Momo Signature";
+  color: rgb(224, 50, 50);
+  font-weight: 300;
+  font-size: 30px;
+}
+
+.main-header__nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.main-header__item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.main-header__item {
+  margin: 0 1rem;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.main-header__item a {
+  text-decoration: none;
+  color: #fcf7f7;
+}
+
+.main-header__item a:hover,
+.main-header__item a:active,
+.main-header__item a.active {
+  color: rgb(224, 50, 50);
+}
+
+.login-li a:hover,
+.login-li a:active {
+  color: white;
+}
+
+.login {
+  background-color: rgb(224, 50, 50);
+  padding: 5px 7px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  font-size: 1rem;
+}
+.login:hover {
+  color: white;
+  background-color: rgb(188, 43, 43);
+}
+
+.btn {
+  font: inherit;
+  border: 1px solid rgb(224, 50, 50);
+  color: rgb(224, 50, 50);
+  background: white;
+  border-radius: 15px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: rgb(224, 50, 50);
+  color: white;
+}
+
+/* Hide hamburger on big screens */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.errorMessage {
+  color: rgb(224, 50, 50);
+  background-color: #fff;
+  margin: 0;
+  z-index: 10;
+  text-align: center;
+}
+
+.error {
+  text-align: center;
+  margin-top: 200px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .main-header {
+    padding: 0 1.5rem;
+  }
+
+  .hamburger {
+    display: block;
+    z-index: 1001;
+  }
+
+  .main-header__nav {
+    position: absolute;
+    top: 3.9rem;
+    left: 0;
+    width: 100%;
+    background: black;
+    display: none;
+    flex-direction: column;
+    padding: 1rem 0;
+    animation: fadeIn 0.3s ease;
+    z-index: 1000;
+  }
+
+  .main-header__item-list {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .main-header__item {
+    margin: 0.7rem 0;
+    font-size: 1.2rem;
+  }
+
+  /* Show menu when active */
+  .main-header__nav.open {
+    display: flex !important;
+  }
+}
+
+/* Smooth fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

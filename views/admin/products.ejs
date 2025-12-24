@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css" />
+    <script defer src="/js/admin.js"></script>
+  </head>
+
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+      <% if (prods.length > 0) { %>
+      <div class="grid">
+        <% for (let product of prods) { %>
+        <article class="card product-item">
+          <div class="card__image">
+            <img src="<%= product.imageURL %>" alt="<%= product.title %>" />
+          </div>
+          <div class="card__header">
+            <h1 class="product__title"><%= product.title %></h1>
+          </div>
+          <div class="card__header">
+            <h1 class="product__description">
+              <% const words = product.description.split(" "); const isLong =
+              words.length > 9; const shortDesc = isLong ? words.slice(0,
+              9).join(' ') : product.description; %>
+              <p>
+                <%= shortDesc %> <% if (isLong) { %>
+                <a href="/products/<%= product._id %>" class="read-more"
+                  >...more</a
+                >
+                <% } %>
+              </p>
+            </h1>
+          </div>
+          <div class="card__content price__button">
+            <span class="product__price">₹<%= product.price %></span>
+            <span class="edit_delete">
+              <a
+                class="btn"
+                href="/admin/edit-product/<%= product._id %>?edit=true"
+                >Edit</a
+              >
+              <div class="actions" value="<%= product._id %>">
+                <input
+                  type="hidden"
+                  value="<%= product._id %>"
+                  name="productID"
+                />
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <button class="btn" type="button" onclick="deleteProduct(this)">
+                  Delete
+                </button>
+              </div>
+            </span>
+          </div>
+        </article>
+        <% } %>
+      </div>
+      <% } else { %>
+      <h1>No Products Found!</h1>
+      <% } %>
+    </main>
+    <%- include('../includes/end.ejs') %>
+  </body>
+</html>

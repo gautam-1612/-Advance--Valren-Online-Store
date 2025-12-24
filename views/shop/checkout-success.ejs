@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+    <h1>Payment Successful 🎉</h1>
+    <p>Your order <%= orderId %> has been placed.</p>
+    <a href="/orders">View Orders</a>
+  </body>
+</html>

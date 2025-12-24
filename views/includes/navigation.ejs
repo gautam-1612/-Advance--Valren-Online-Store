@@ -1,0 +1,78 @@
+<header class="main-header">
+  <h1 class="logo">Valren</h1>
+
+  <button class="hamburger" id="hamburgerBtn">
+    <img height="20px" width="20px" src="/hamburg.svg" alt="menu" />
+  </button>
+
+  <nav class="main-header__nav" id="mobileNav">
+    <ul class="main-header__item-list">
+      <li class="main-header__item">
+        <a href="/" class="<%= path === '/' ? 'active' : '' %>">Shop</a>
+      </li>
+
+      <li class="main-header__item">
+        <a href="/products" class="<%= path === '/products' ? 'active' : '' %>">
+          Products
+        </a>
+      </li>
+
+      <% if (isAuthenticated ) { %>
+
+      <li class="main-header__item">
+        <a href="/cart" class="<%= path === '/cart' ? 'active' : '' %>">
+          Cart
+        </a>
+      </li>
+
+      <li class="main-header__item">
+        <a href="/orders" class="<%= path === '/orders' ? 'active' : '' %>">
+          Orders
+        </a>
+      </li>
+
+      <% if (admin) { %>
+      <li class="main-header__item">
+        <a
+          href="/admin/add-product"
+          class="<%= path === '/admin/add-product' ? 'active' : '' %>"
+        >
+          Add Product
+        </a>
+      </li>
+
+      <li class="main-header__item">
+        <a
+          href="/admin/products"
+          class="<%= path === '/admin/products' ? 'active' : '' %>"
+        >
+          Admin Products
+        </a>
+      </li>
+      <% } %>
+
+      <li class="main-header__item login-li">
+        <form action="/logout" method="POST">
+          <button type="submit" class="login">Logout</button>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        </form>
+      </li>
+
+      <% } else { %>
+
+      <li class="main-header__item">
+        <a href="/login" class="<%= path === '/login' ? 'active' : '' %>">
+          Login
+        </a>
+      </li>
+
+      <li class="main-header__item login-li">
+        <form action="/signup" method="get">
+          <button type="submit" class="login">Signup</button>
+        </form>
+      </li>
+
+      <% } %>
+    </ul>
+  </nav>
+</header>

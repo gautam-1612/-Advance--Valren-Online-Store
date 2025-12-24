@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/cart.css" />
+  </head>
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+      <% if(products.length) { %>
+      <h1 class="cart_heading">Cart List</h1>
+      <div class="separator">
+        <section class="section_1">
+          <ul class="un-list">
+            <% for(prod of products){ %>
+
+            <li>
+              <article>
+                <a href="/products/<%= prod.productId._id %>"
+                  ><img
+                    src="<%= prod.productId.imageURL%>"
+                    alt="<%= prod.productId.title%>"
+                /></a>
+                <div class="content">
+                  <h1><%= prod.productId.title%></h1>
+                  <p><%= prod.productId.description%></p>
+                  <div class="price_form">
+                    <p>₹<%= prod.productId.price %></p>
+
+                    <div class="form">
+                      <form action="/cart/decrease" method="POST">
+                        <input
+                          type="hidden"
+                          name="_csrf"
+                          value="<%= csrfToken %>"
+                        />
+                        <input
+                          type="hidden"
+                          name="productID"
+                          value="<%= prod.productId._id %>"
+                        />
+                        <button class="qty-btn">-</button>
+                      </form>
+
+                      <p><%= prod.quantity %></p>
+
+                      <form action="/cart/increase" method="POST">
+                        <input
+                          type="hidden"
+                          name="_csrf"
+                          value="<%= csrfToken %>"
+                        />
+                        <input
+                          type="hidden"
+                          name="productID"
+                          value="<%= prod.productId._id %>"
+                        />
+                        <button class="qty-btn">+</button>
+                      </form>
+
+                      <form action="/cart/delete" method="POST">
+                        <input
+                          type="hidden"
+                          name="_csrf"
+                          value="<%= csrfToken %>"
+                        />
+                        <input
+                          type="hidden"
+                          name="productID"
+                          value="<%= prod.productId._id %>"
+                        />
+                        <button class="delete-btn">Remove</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <% } %>
+          </ul>
+        </section>
+        <div class="v-line"></div>
+
+        <section class="section_2">
+          <% const shippingCost = totalPrice >= 5000 ? 0 : 500; const gstAmount
+          = Math.round(totalPrice * 0.12); const finalPayable = totalPrice +
+          gstAmount + shippingCost; %>
+
+          <div class="total first_total">
+            <h2 class="total_price">Total Cost</h2>
+            <p>₹ <%= totalPrice %></p>
+          </div>
+
+          <div class="total">
+            <h2 class="total_price secondary_price">Shipping</h2>
+            <p>
+              <% if (shippingCost === 0) { %> Free <% } else { %> ₹ <%=
+              shippingCost %> <% } %>
+            </p>
+          </div>
+
+          <div class="total">
+            <h2 class="total_price secondary_price">GST (12%)</h2>
+            <p>₹ <%= gstAmount %></p>
+          </div>
+
+          <div class="total">
+            <h2 class="total_price">Total Payable</h2>
+            <p class="finalPayable">₹ <%= finalPayable %></p>
+          </div>
+
+          <p
+            style="
+              margin-top: 10px;
+              font-size: 0.85rem;
+              opacity: 0.7;
+              text-align: center;
+            "
+          >
+            <% if (shippingCost === 0) { %> Shipping is free above order of
+            ₹5000 <% } else { %> Shipping fee added for orders below ₹5000 <% }
+            %>
+          </p>
+          <a href="/checkout" class="checkout">Checkout</a>
+        </section>
+      </div>
+      <% } else { %>
+      <div class="empty">
+        <p class="empty-text">
+          Your cart feels lonely 😔 Add something you'll love!
+        </p>
+        <img src="/emptyCart.svg" alt="cart Image" />
+      </div>
+      <% } %>
+    </main>
+  </body>
+</html>

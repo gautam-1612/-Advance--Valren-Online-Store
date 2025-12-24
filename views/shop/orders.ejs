@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/cart.css" />
+    <link rel="stylesheet" href="/css/order.css" />
+  </head>
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+    <main class="boxmain">
+      <% if (orders.length > 0) { %>
+        <h1 class="placed_orders">Placed Orders</h1>
+      <% orders.forEach(order => { %>
+        <div class="outer">
+
+          <h2 class="timestamp">
+            Order placed on <%= order.createdAt.toDateString() %>
+          </h2>
+          <ul class="un-list">
+            <% order.products.forEach(prod => { %>
+              <li>
+                <article>
+                  <a href="/products/<%= prod.product.productId %>">
+                    <img class='prodImg' src="<%= prod.product.imageURL %>" alt="Product Image" />
+                  </a>
+                  <div class="content">
+                    <h1><%= prod.product.title %></h1>
+                    <p class="info"><%= prod.product.description %></p>
+                    <div class="purchase_info">
+                      <div class="price_form">
+                        <!-- <p>₹<%= prod.product.price %> + ₹<%= prod.product.price * 0.12 %> (GST) 
+                          <% if(prod.product.price<500) { %>
+                            + ₹500 (shipping) 
+                            <%}%></p> -->
+                            <% if(prod.product.price > 5000) { %> 
+                        <p> ₹<%= Math.ceil(prod.product.price + prod.product.price * 0.12) %> (incl. GST) </p>
+                        <% } else { %>
+                          <p> ₹<%= Math.ceil(prod.product.price + prod.product.price * 0.12 + 500) %> (incl. GST & Shipping) </p>
+                          <%}%>
+                        </div>
+                        <p>Qty: <%= prod.quantity %></p>
+                        
+                      </div>
+                        
+                      </div>
+                      
+                </article>
+                <% }) %>
+                <div class="invoice">
+                      <a class="button invoice_link" href="orders/<%= order._id %>">Invoice</a>
+                    </div>
+              </ul>
+            </div>
+          </li>
+          
+      <% }) %> <% } else { %>
+        <div class="empty">
+          <p class="empty-text">Oops! No purchases made yet.😔</p>
+          <img src="/order.svg" alt="order image" />
+        </div>
+        <% } %>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+  </head>
+
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+    <div class="wrapper">
+      <section class="login_section">
+        <form class="login_form" action="/login" method="post">
+          <h2 class="welcome">Glad You're Back !</h2>
+          <% if(errorMessage) { %>
+          <div class="errorMessage">
+            <p><%= errorMessage %></p>
+          </div>
+          <% } %>
+          <label for="email"> Email </label>
+          <input
+            type="text"
+            class="login_input"
+            id="email"
+            name="email"
+            value="<%= oldInput.email %>"
+            autofocus
+          />
+          <label for="password"> Password </label>
+          <input
+            type="password"
+            class="login_input"
+            id="password"
+            name="password"
+          />
+          <a href="/reset" class="forgot_password">Forgot Password ?</a>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button class="btn">Login</button>
+        </form>
+      </section>
+    </div>
+  </body>
+</html>
