@@ -106,7 +106,3 @@ Admins have full control over the system:
 - `multer` – file handling 
 - `connect-flash` – flash messages
 
-
-
-## 📁 Project Structure
-
