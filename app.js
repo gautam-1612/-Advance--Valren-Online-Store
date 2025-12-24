@@ -83,6 +83,7 @@ app.use(csrfProtection);
 // ########################## FLASH MESSAGES ##########################
 app.use(flash());
 app.use(csrfProtection);
+
 // ########################## ATTACH USER TO REQUEST ##########################
 app.use((req, res, next) => {
   if (!req.session.user) return next();
@@ -108,7 +109,7 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 // ########################## HELMET for additional headers, COMPRESSION to compress assets & MORGAN for logs ##########################
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false, }));
 app.use(compression());
 
 // ########################## ROUTES ##########################
