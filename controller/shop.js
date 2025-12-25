@@ -155,6 +155,14 @@ exports.getCheckout = (req, res, next) => {
 exports.startCheckout = async (req, res, next) => {
   console.log("🔥 /start-checkout HIT");
 
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({
+      message: "Validation failed",
+      errors: errors.array(),
+    });
+  }
+
   try {
     const { fullName, phone, address, email } = req.body;
 
