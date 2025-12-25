@@ -155,20 +155,14 @@ exports.getCheckout = (req, res, next) => {
 exports.startCheckout = async (req, res, next) => {
   console.log("🔥 /start-checkout HIT");
 
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).json({
-      message: "Validation failed",
-      errors: errors.array(),
-    });
-  }
-
   try {
     const { fullName, phone, address, email } = req.body;
 
-    // Validate phone
-    if (!/^\d{10}$/.test(phone)) {
-      return res.status(400).json({ error: "Invalid phone number" });
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        error: errors.array()[0].msg, // FIRST validation error
+      });
     }
 
     // Load cart
